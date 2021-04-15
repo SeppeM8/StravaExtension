@@ -1,0 +1,26 @@
+{
+    "appDesc": {
+        "message": "Strava Snelheid"
+    },
+    "option_tooltip": {
+        "message": "Tooltip"
+    },
+    "option_tooltip_description": {
+        "message": "Toon snelheid wanneer muis op tempo staat"
+    },
+    "option_add" : {
+        "message": "Voeg toe"
+    },
+    "option_add_description": {
+        "message": "Voeg snelheid toe als extra veld"
+    },
+    "option_replace" : {
+        "message": "Vervang"
+    },
+    "option_replace_description": {
+        "message": "Vervang tempo door snelheid"
+    },
+    "speed": {
+        "message": "Snelheid"
+    }
+}
