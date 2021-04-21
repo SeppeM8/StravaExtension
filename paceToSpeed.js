@@ -117,7 +117,6 @@ chrome.storage.sync.get("option", ({option}) => {
   }
 
   function changeResults(table) {
-    console.log(table)
 
     if (option == "Replace") {
       table.getElementsByTagName("THEAD")[0].getElementsByTagName("TH")[3].innerText = chrome.i18n.getMessage("speed");
@@ -208,9 +207,14 @@ chrome.storage.sync.get("option", ({option}) => {
     });
   });
 
-  const splits = document.getElementById("splits-container");
+  const splits = document.getElementById("splits-container"); // Als splits na script laadt
   if (splits) {
     splitsObserver.observe(splits, config);
+  }
+  
+  const table = splits.getElementsByTagName("TABLE"); // Als splits voor script geladen is
+  if (table && table[0]) {
+      changeTable(table[0], document.getElementsByClassName("border-left map spans12")[0]);
   }
 
   var elevationObserver = new MutationObserver(function(mutations) {
@@ -234,7 +238,7 @@ chrome.storage.sync.get("option", ({option}) => {
   // /segments
 
   const result = document.getElementsByClassName("table table-striped table-padded table-leaderboard");
-  if (result) {
+  if (result && result[0]) {
     changeResults(result[0]);
   }
 });

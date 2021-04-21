@@ -1,6 +1,6 @@
 {
     "appDesc": {
-        "message": "Strava Speed"
+        "message": "Show speed for running activities"
     },
     "option_tooltip": {
         "message": "Tooltip"
