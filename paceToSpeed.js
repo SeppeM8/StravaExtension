@@ -166,6 +166,12 @@ chrome.storage.sync.get("option", ({option}) => {
   }
 
 
+  // /dashboard group
+  for (card of document.getElementsByClassName("activity child-entry")) {
+    changeCard(card);
+  }
+
+
   // /athletes
   for (list of document.getElementsByClassName("inline-stats list-stats")) {
     changeListStats(list);

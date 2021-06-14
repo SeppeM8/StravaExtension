@@ -1,7 +1,7 @@
 {
     "name": "Strava Speed (Km/h / mph)",
     "description": "__MSG_appDesc__",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "default_locale": "en",
     "manifest_version": 3,
     "icons": {  "16": "icons/icon16.png",
