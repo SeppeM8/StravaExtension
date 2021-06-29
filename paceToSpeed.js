@@ -33,22 +33,27 @@ chrome.storage.sync.get("option", ({option}) => {
     }
   }
 
-  function changeListStats(list) {
-    const paceLi = list.getElementsByTagName("li")[1];
-    const pace = paceLi.outerText;
+  function changeListStatsItem(item) {
+    const pace = item.outerText;
     if (pace.includes("/km") || pace.includes("/mi")) {
       if (option === "Tooltip") {
-        paceLi.title = paceToSpeed(pace).string;
+        item.title = paceToSpeed(pace).string;
       } else if (option === "Add"){
-        const speed = paceLi.cloneNode(true);
+        const speed = item.cloneNode(true);
         speed.innerText = paceToSpeed(pace).string;
         speed.title = chrome.i18n.getMessage("speed");
         list.insertBefore(speed, list.getElementsByTagName("li")[2]);
       } else if (option === "Replace") {      
-        paceLi.title = chrome.i18n.getMessage("speed")
-        paceLi.innerText = paceToSpeed(pace).string;
+        item.title = chrome.i18n.getMessage("speed")
+        item.innerText = paceToSpeed(pace).string;
       }
     }
+  }
+
+  function changeListStats(list) {
+    for (var i = 0; i < list.getElementsByTagName("li").length; i++) {
+      changeListStatsItem(list.getElementsByTagName("li")[i]);
+    }    
   }
 
   function changeSection(section) {
@@ -218,9 +223,11 @@ chrome.storage.sync.get("option", ({option}) => {
     splitsObserver.observe(splits, config);
   }
   
-  const table = splits.getElementsByTagName("TABLE"); // Als splits voor script geladen is
-  if (table && table[0]) {
-      changeTable(table[0], document.getElementsByClassName("border-left map spans12")[0]);
+  if (splits) {
+    const table = splits.getElementsByTagName("TABLE"); // Als splits voor script geladen is
+    if (table && table[0]) {
+        changeTable(table[0], document.getElementsByClassName("border-left map spans12")[0]);
+    }
   }
 
   var elevationObserver = new MutationObserver(function(mutations) {
