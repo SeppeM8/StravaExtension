@@ -12,48 +12,26 @@ chrome.storage.sync.get("option", ({option}) => {
   }
   
   function changeCard(card) {
-    const list = card.getElementsByClassName("list-stats")[0];
-    const paceDiv = list.getElementsByClassName("stat")[1];
-    const pace = paceDiv.getElementsByClassName("stat-text")[0].outerText;
-    if (pace.includes("/km") || pace.includes("/mi")) {
-  
-      if (option === "Tooltip") {
-        paceDiv.title = paceToSpeed(pace).string;
-      } else if (option === "Add"){
-        const speed = paceDiv.cloneNode(true);
-        speed.getElementsByClassName("stat-subtext")[0].innerText = chrome.i18n.getMessage("speed");
-        speed.getElementsByClassName("stat-text")[0].innerText = paceToSpeed(pace).string;
-        const li = document.createElement("li");
-        li.appendChild(speed);
-        list.appendChild(li);
-      } else if (option === "Replace") {      
-        paceDiv.getElementsByClassName("stat-subtext")[0].innerText = chrome.i18n.getMessage("speed");
-        paceDiv.getElementsByClassName("stat-text")[0].innerText = paceToSpeed(pace).string;
+    const listItems = card.getElementsByTagName("LI");
+    for (var item of listItems) {
+      if (item.outerText.includes("/km.") || item.outerText.includes("mph")) {
+        const paceDiv = item.childNodes[0].childNodes[1];
+        if (paceDiv) {
+          const pace = paceDiv.innerText;          
+            if (option === "Tooltip") {
+              paceDiv.title = paceToSpeed(pace).string;
+            } else if (option === "Add"){
+              const speed = item.cloneNode(true);
+              speed.childNodes[0].childNodes[0].innerText = chrome.i18n.getMessage("speed");
+              speed.childNodes[0].childNodes[1].innerText = paceToSpeed(pace).string;
+              item.parentNode.appendChild(speed);
+            } else if (option === "Replace") { 
+              paceDiv.parentNode.childNodes[0].innerText = chrome.i18n.getMessage("speed");
+              paceDiv.innerText = paceToSpeed(pace).string;
+            }
+        }
       }
     }
-  }
-
-  function changeListStatsItem(item) {
-    const pace = item.outerText;
-    if (pace.includes("/km") || pace.includes("/mi")) {
-      if (option === "Tooltip") {
-        item.title = paceToSpeed(pace).string;
-      } else if (option === "Add"){
-        const speed = item.cloneNode(true);
-        speed.innerText = paceToSpeed(pace).string;
-        speed.title = chrome.i18n.getMessage("speed");
-        list.insertBefore(speed, list.getElementsByTagName("li")[2]);
-      } else if (option === "Replace") {      
-        item.title = chrome.i18n.getMessage("speed")
-        item.innerText = paceToSpeed(pace).string;
-      }
-    }
-  }
-
-  function changeListStats(list) {
-    for (var i = 0; i < list.getElementsByTagName("li").length; i++) {
-      changeListStatsItem(list.getElementsByTagName("li")[i]);
-    }    
   }
 
   function changeSection(section) {
@@ -149,14 +127,14 @@ chrome.storage.sync.get("option", ({option}) => {
 
 
   // /dashboard
-  for (card of document.getElementsByClassName("activity feed-entry card")) {
+  for (card of document.getElementsByClassName("react-card-container")) {
     changeCard(card);
   }
 
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       mutation.addedNodes.forEach(function(node) {
-        if (node.tagName === "DIV" && node.classList.value === "activity feed-entry card") {
+        if (node.tagName === "DIV" && node.classList.value === "react-card-container") {
           changeCard(node);
         }
       });
@@ -170,24 +148,13 @@ chrome.storage.sync.get("option", ({option}) => {
     observer.observe(feed, config);
   }
 
-
-  // /dashboard group
-  for (card of document.getElementsByClassName("activity child-entry")) {
-    changeCard(card);
-  }
-
-
   // /athletes
-  for (list of document.getElementsByClassName("inline-stats list-stats")) {
-    changeListStats(list);
-  }
-
   var athletesObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       mutation.addedNodes.forEach(function(node) {
         if (node.tagName === "DIV") {
-          for (activity of node.getElementsByClassName("activity entity-details feed-entry")) {
-            changeListStats(activity.getElementsByClassName("inline-stats list-stats")[0])
+          for (activity of node.getElementsByClassName("react-card-container")) {
+            changeCard(activity);
           }          
         }
       });
