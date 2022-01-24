@@ -14,7 +14,7 @@ chrome.storage.sync.get("option", ({option}) => {
   function changeCard(card) {
     const listItems = card.getElementsByTagName("LI");
     for (var item of listItems) {
-      if (item.outerText.includes("/km.") || item.outerText.includes("mph")) {
+      if (item.outerText.includes("/km") || item.outerText.includes("mph")) {
         const paceDiv = item.childNodes[0].childNodes[1];
         if (paceDiv) {
           const pace = paceDiv.innerText;          
