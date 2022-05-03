@@ -127,14 +127,14 @@ chrome.storage.sync.get("option", ({option}) => {
 
 
   // /dashboard
-  for (card of document.getElementsByClassName("react-card-container")) {
+  for (card of document.getElementsByClassName("Feed--entry-container--ntrEd")) {
     changeCard(card);
   }
 
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       mutation.addedNodes.forEach(function(node) {
-        if (node.tagName === "DIV" && node.classList.value === "react-card-container") {
+        if (node.tagName === "DIV" && node.classList.value === "Feed--entry-container--ntrEd") {
           changeCard(node);
         }
       });
@@ -153,7 +153,7 @@ chrome.storage.sync.get("option", ({option}) => {
     mutations.forEach(function(mutation) {
       mutation.addedNodes.forEach(function(node) {
         if (node.tagName === "DIV") {
-          for (activity of node.getElementsByClassName("react-card-container")) {
+          for (activity of node.getElementsByClassName("Feed--entry-container--ntrEd")) {
             changeCard(activity);
           }          
         }
