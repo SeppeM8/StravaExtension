@@ -127,26 +127,36 @@ chrome.storage.sync.get("option", ({option}) => {
 
 
   // /dashboard
-  for (card of document.getElementsByClassName("Feed--entry-container--ntrEd")) {
-    changeCard(card);
-  }
 
-  var observer = new MutationObserver(function(mutations) {
+  const config = { attributes: false, childList: true, characterData: false };
+
+  var feedObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       mutation.addedNodes.forEach(function(node) {
-        if (node.tagName === "DIV" && node.classList.value === "Feed--entry-container--ntrEd") {
+        if (node.classList.value === "_-_-packages-feed-ui-src-features-FeedEntry__entry-container--vBe17") {
           changeCard(node);
         }
       });
     })
-  })
-  
-  const config = { attributes: false, childList: true, characterData: false };
+  });
 
-  const feed = document.getElementsByClassName("feed")[0];
-  if (feed) {
-    observer.observe(feed, config);
-  }
+  var microfontendObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        feedObserver.observe(node.children[0], config);
+        node.childNodes[0].childNodes.forEach(function(child) {
+          if (child.classList.value === "_-_-packages-feed-ui-src-features-FeedEntry__entry-container--vBe17") {
+            changeCard(child);
+          }
+        });
+      })
+    })
+  });
+  
+
+  const feed = document.getElementsByClassName("feed-container")[0];
+  if (feed) microfontendObserver.observe(feed.children[1].children[0], config);
+
 
   // /athletes
   var athletesObserver = new MutationObserver(function(mutations) {
