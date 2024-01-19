@@ -1,0 +1,26 @@
+{
+    "appDesc": {
+        "message": "Geschwindigkeit für Laufaktivitäten anzeigen"
+    },
+    "option_tooltip": {
+        "message": "Tooltip"
+    },
+    "option_tooltip_description": {
+        "message": "Geschwindigkeit anzeigen, wenn die Maus auf dem Tempo liegt"
+    },
+    "option_add": {
+        "message": "Hinzufügen"
+    },
+    "option_add_description": {
+        "message": "Geschwindigkeit als zusätzliches Feld hinzufügen"
+    },
+    "option_replace": {
+        "message": "Ersetzen"
+    },
+    "option_replace_description": {
+        "message": "Tempo durch Geschwindigkeit ersetzen"
+    },
+    "speed": {
+        "message": "Geschwindigkeit"
+    }
+}

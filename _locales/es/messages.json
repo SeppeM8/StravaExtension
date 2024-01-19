@@ -1,0 +1,26 @@
+{
+    "appDesc": {
+        "message": "Show speed for running activities"
+    },
+    "option_tooltip": {
+        "message": "Tooltip"
+    },
+    "option_tooltip_description": {
+        "message": "Show speed when mouse on pace"
+    },
+    "option_add" : {
+        "message": "Add"
+    },
+    "option_add_description": {
+        "message": "Add speed as extra field"
+    },
+    "option_replace" : {
+        "message": "Replace"
+    },
+    "option_replace_description": {
+        "message": "Replace pace with speed"
+    },
+    "speed": {
+        "message": "Speed"
+    }
+}

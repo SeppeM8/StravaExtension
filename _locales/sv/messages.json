@@ -1,0 +1,26 @@
+{
+    "appDesc": {
+        "message": "Visa hastighet för löpaktiviteter"
+    },
+    "option_tooltip": {
+        "message": "Verktygstips"
+    },
+    "option_tooltip_description": {
+        "message": "Visa hastighet när musen är över tempo"
+    },
+    "option_add": {
+        "message": "Lägg till"
+    },
+    "option_add_description": {
+        "message": "Lägg till hastighet som extra fält"
+    },
+    "option_replace": {
+        "message": "Ersätt"
+    },
+    "option_replace_description": {
+        "message": "Ersätt tempo med hastighet"
+    },
+    "speed": {
+        "message": "Hastighet"
+    }
+}

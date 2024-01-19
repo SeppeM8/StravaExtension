@@ -1,7 +1,7 @@
 {
   "name": "Strava Speed (Km/h / mph)",
   "description": "__MSG_appDesc__",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "default_locale": "en",
   "manifest_version": 3,
   "icons": {
@@ -16,7 +16,8 @@
     {
       "matches": [
         "*://*.strava.com/dashboard*",
-        "*://*.strava.com/athletes*"
+        "*://*.strava.com/athletes*",
+        "*://*.strava.com/clubs*"
       ],
       "js": [
         "cards.js"

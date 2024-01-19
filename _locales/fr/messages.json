@@ -1,0 +1,26 @@
+{
+    "appDesc": {
+        "message": "Mostrar velocidad para actividades de running"
+    },
+    "option_tooltip": {
+        "message": "Información sobre herramientas"
+    },
+    "option_tooltip_description": {
+        "message": "Mostrar velocidad cuando el ratón está sobre el ritmo"
+    },
+    "option_add": {
+        "message": "Agregar"
+    },
+    "option_add_description": {
+        "message": "Agregar velocidad como campo adicional"
+    },
+    "option_replace": {
+        "message": "Reemplazar"
+    },
+    "option_replace_description": {
+        "message": "Reemplazar ritmo con velocidad"
+    },
+    "speed": {
+        "message": "Velocidad"
+    }
+}
